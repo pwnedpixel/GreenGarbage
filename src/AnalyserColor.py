@@ -9,18 +9,20 @@ file_lines=open_file.readlines()
 key =file_lines[0].strip()
 indicoio.config.api_key = key
 
-def getType(imgPath):
+def getColor(imgPath):
     collection = Collection("plasticPaperGarbage")
     collection.wait()
     image = PIL.Image.open(imgPath)
     pixel_array = np.array(image)
     response = collection.predict(pixel_array)
     print(response)
-    if (response['paper'] > 0.5):
-        return 'paper'
-    if (response['plastic'] > 0.5):
-        return 'plastic'
-    return 'garbage'
+    if (response['green'] > max({response['blue'],response['red']})):
+        return 'green'
+    if (response['blue'] > max({response['green'],response['red']})):
+        return 'blue'
+    if response['red'] > max({response['blue'], response['green']}):
+        return 'red'
+    return 'error'
     #return(max({response['green'],response['blue'],response['red']}))
 
 #print(getColor('../images/test.jpg'))

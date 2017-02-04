@@ -58,8 +58,3 @@ def move(direction, distance, motor):
             # Set to -1 or -2 for anti-clockwise
     StepCounter = 0
 
-move(-2,200,"bottom")
-move(2,600,"top")
-move(-2,600,"top")
-move(2,200,"bottom")
-
