@@ -89,3 +89,6 @@ ENV/
 .ropeproject
 *.iml
 *.xml
+temp/
+images/
+keys.txt
